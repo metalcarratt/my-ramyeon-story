@@ -6,6 +6,7 @@ export type Choice = {
 
 export type Scene = {
   text: string;
+  img: string;
   choices: Choice[];
 };
 
@@ -25,6 +26,7 @@ export type Ending =
 
 const scene1: Scene = {
   text: 'At the shop. Which ramyeon?',
+  img: 'noodles1.jpg',
   choices: [
     {
       text: 'Buldak',
@@ -42,6 +44,7 @@ const scene1: Scene = {
 
 const scene2: Scene = {
   text: 'Finished shopping. How to go home?',
+  img: 'noodles2.jpg',
   choices: [
     {
       text: 'By Taxi',
@@ -62,6 +65,7 @@ const scene2: Scene = {
 
 const scene3: Scene = {
   text: 'Boiling noodles. How many cups of water?',
+  img: 'noodles3.jpg',
   choices: [
     {
       text: '1 cup',
@@ -79,6 +83,7 @@ const scene3: Scene = {
 
 const scene4: Scene = {
   text: 'Looking in the fridge. Add what?',
+  img: 'noodles4.jpg',
   choices: [
     {
       text: 'An egg',
@@ -96,6 +101,7 @@ const scene4: Scene = {
 
 const scene5: Scene = {
   text: 'Still looking. Add what?',
+  img: 'noodles4.jpg',
   choices: [
     {
       text: 'Rice',
@@ -113,6 +119,7 @@ const scene5: Scene = {
 
 const scene6: Scene = {
   text: 'Still looking. Add what?',
+  img: 'noodles4.jpg',
   choices: [
     {
       text: 'Sausage',
@@ -130,6 +137,7 @@ const scene6: Scene = {
 
 const scene7: Scene = {
   text: 'Cooking now. Boil for how long?',
+  img: 'noodles5.jpg',
   choices: [
     {
       text: '2 minutes',
