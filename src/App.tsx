@@ -1,42 +1,15 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import { scenes, type Choice, type Scene } from './scenes';
-
-const InnerScene = ({scene, resultText, clickButton}: {scene: Scene, resultText: string, clickButton: (choice: Choice) => void}) => {
-  return (
-    <>
-      <img src={`${import.meta.env.BASE_URL}/${scene.img}`} style={{
-        width: '100vw',
-        height: '100vh',
-        objectFit: 'contain',
-        maxWidth: '100%',
-        maxHeight: '100%',
-        position: 'relative'
-      }}/>
-      <div style = {{
-        position: 'absolute',
-        bottom: 0,
-        margin: '0 auto',
-        width: '100%',
-        paddingBottom: '4px'
-      }}>
-      
-        <p style={{
-          padding: '8px',
-          backgroundColor: '#aaac'
-        }}>{resultText}{scene.text}</p>
-        {scene.choices.map(choice => 
-          <button onClick={() => clickButton(choice)}>{choice.text}</button>
-        )}
-      </div>
-    </>
-  );
-}
+import { InnerScene } from './inner-scene';
+import { useVideo } from './use-video';
 
 function App() {
   const [sceneIter, setSceneIter] = useState(0);
   const [ending, setEnding] = useState('');
   const [resultStory, setResultStory] = useState('');
+  
+  const video = useVideo();
 
   const scene = (): Scene => {
     if (sceneIter < scenes.length) {
@@ -50,6 +23,17 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    const sc = scene();
+    if (sc.startVideo) {
+      console.log('scene has video'); 
+      video.newVideo(sc.startVideo);
+    } else if (sc.img) {
+      video.setPath('');
+    }
+  }, [sceneIter]);
+
+  
   const clickButton = (choice: Choice) => {
     setSceneIter(sceneIter + 1);
     if (choice.ending) {
@@ -60,9 +44,18 @@ function App() {
     } else {
       setResultStory('');
     }
+    if (choice.video) {
+      console.log('choice has video');
+      video.newVideo(choice.video);
+    }
   }
 
-  return <InnerScene scene={scene()} resultText={resultStory} clickButton={clickButton} />;
+  return <InnerScene
+    scene={scene()}
+    resultText={resultStory}
+    clickButton={clickButton}
+    video={video}
+  />;
 }
 
 export default App

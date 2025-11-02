@@ -2,11 +2,13 @@ export type Choice = {
   text: string;
   result?: string;
   ending?: Ending;
+  video?: string;
 };
 
 export type Scene = {
-  text: string;
-  img: string;
+  text?: string;
+  img?: string;
+  startVideo?: string;
   choices: Choice[];
 };
 
@@ -24,27 +26,40 @@ export type Ending =
   | 'Too spicy'
   | 'Perfect';
 
-const scene1: Scene = {
-  text: 'At the shop. Which ramyeon?',
+const scene0: Scene = {
   img: 'noodles1.jpg',
+  choices: [
+    {
+      text: 'Start',
+    },
+  ],
+};
+
+const scene1: Scene = {
+  text: 'Which ramyeon should I buy?',
+  // img: 'noodles1.jpg',
+  startVideo: 'scene1.mp4',
   choices: [
     {
       text: 'Buldak',
       ending: 'Too spicy',
+      video: 'scene2-buldak.mp4',
     },
     {
       text: 'Cheese',
       ending: 'Gross',
+      video: 'scene2-cheese.mp4',
     },
     {
       text: 'Kimchi',
+      video: 'scene2-kimchi.mp4',
     },
   ],
 };
 
 const scene2: Scene = {
   text: 'Finished shopping. How to go home?',
-  img: 'noodles2.jpg',
+  // img: 'noodles2.jpg',
   choices: [
     {
       text: 'By Taxi',
@@ -152,6 +167,7 @@ const scene7: Scene = {
 };
 
 export const scenes: Scene[] = [
+  scene0,
   scene1,
   scene2,
   scene3,
