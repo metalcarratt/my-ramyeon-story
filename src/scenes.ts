@@ -21,10 +21,36 @@ export type Ending =
   | 'Too many sprouts'
   | 'Too salty'
   | 'Too watery'
-  | 'No taste'
   | 'Gross'
   | 'Too spicy'
   | 'Perfect';
+
+export const videoForEnding = (ending: Ending) => {
+  switch (ending) {
+    case 'Shells fall in':
+      return 'ending-eggshells.mp4';
+    case 'Too fishy':
+      return 'ending-fishy.mp4';
+    case 'Too sticky':
+      return 'ending-cheesy.mp4';
+    case 'Too gloupy':
+      return 'ending-loupy.mp4';
+    case 'Burnt':
+      return 'ending-burnt.mp4';
+    case 'Too many sprouts':
+      return 'ending-sprouts.mp4';
+    case 'Too salty':
+      return 'ending-salty.mp4';
+    case 'Too spicy':
+      return 'ending-spicy.mp4';
+    case 'Gross':
+      return 'ending-gross.mp4';
+    case 'Too watery':
+      return 'ending-watery.mp4';
+    case 'Perfect':
+      return 'ending-perfect.mp4';
+  }
+};
 
 const scene0: Scene = {
   img: 'noodles1.jpg',

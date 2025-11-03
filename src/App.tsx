@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import { scenes, type Choice, type Scene } from './scenes';
+import { scenes, videoForEnding, type Choice, type Ending, type Scene } from './scenes';
 import { InnerScene } from './inner-scene';
 import { useVideo } from './use-video';
 
 function App() {
   const [sceneIter, setSceneIter] = useState(0);
-  const [ending, setEnding] = useState('');
+  const [ending, setEnding] = useState<Ending | ''>('');
   const [resultStory, setResultStory] = useState('');
   
   const video = useVideo();
@@ -17,7 +17,8 @@ function App() {
     } else {
       return {
         text: ending ? ending : 'Mmm, yummy!',
-        img: 'noodles6.jpg',
+        // img: 'noodles6.jpg',
+        startVideo: videoForEnding(ending as Ending),
         choices: []
       }
     }
@@ -39,6 +40,7 @@ function App() {
     setSceneIter(sceneIter + 1);
     if (choice.ending) {
       setEnding(choice.ending);
+      // video.newVideo(videoForEnding(choice.ending));
     }
     if (choice.result) {
       setResultStory(choice.result);
