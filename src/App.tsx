@@ -28,7 +28,8 @@ function App() {
     if (sc.startVideo) {
       console.log('scene has video'); 
       video.newVideo(sc.startVideo);
-    } else if (sc.img) {
+    } else if (sc.img && !video.isPlaying) {
+      console.log('scene has image');
       video.setPath('');
     }
   }, [sceneIter]);

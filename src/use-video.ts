@@ -4,18 +4,42 @@ export const useVideo = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [path, setPath] = useState('');
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [nextVideo, setNextVideo] = useState('');
 
-  const videoEnded = () => setIsPlaying(false);
-
-  const newVideo = (videoName: string) => {
-    setPath(videoName);
+  const changeVideo = (newVideo: string) => {
+    console.log('change video to ', newVideo);
+    setPath(newVideo);
     setIsPlaying(true);
     const video = videoRef.current;
     if (video) {
-      video.src = videoName;
+      console.log('change src');
+      video.src = newVideo;
+      console.log('load');
       video.load();
+      console.log('play');
       video.play();
     }
+  };
+
+  const videoEnded = () => {
+    console.log('video ended');
+    if (nextVideo) {
+      changeVideo(nextVideo);
+      setNextVideo('');
+      return;
+    }
+
+    setIsPlaying(false);
+  };
+
+  const newVideo = (videoName: string) => {
+    console.log('new video');
+    if (isPlaying) {
+      setNextVideo(videoName);
+      return;
+    }
+
+    changeVideo(videoName);
   };
 
   const skipToEnd = () => {
