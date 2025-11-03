@@ -48,6 +48,7 @@ export const videoForEnding = (ending: Ending) => {
     case 'Too watery':
       return 'ending-watery.mp4';
     case 'Perfect':
+    default:
       return 'ending-perfect.mp4';
   }
 };

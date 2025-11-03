@@ -16,7 +16,7 @@ function App() {
       return scenes[sceneIter];
     } else {
       return {
-        text: ending ? ending : 'Mmm, yummy!',
+        text: ending ? ending : 'Perfect',
         // img: 'noodles6.jpg',
         startVideo: videoForEnding(ending as Ending),
         choices: []
